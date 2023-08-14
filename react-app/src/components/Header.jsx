@@ -2,23 +2,25 @@ import React from "react";
 import {images} from "../constants"
 import {AiOutlineMenu, AiOutlineClose} from "react-icons/ai";
 import {MdKeyboardArrowDown} from "react-icons/md";
+import {useState} from "react";
 
 const navItemsInfo = [
-    {
-        name: "Home", type:"link"
-    }, {
-        name: "Ariticles", type:"link"
-    }, {
-        name: "Pages", type:"dropdown", items: ["About us", "Contact us"]
-    }, {
-        name: "Pricing", type:"link"
-    }, {
-        name: "FAQ", type:"link"
-    }
+    {name: "Home", type:"link"}, 
+    {name: "Ariticles", type:"link"}, 
+    {name: "Pages", type:"dropdown", items: ["About us", "Contact us"]}, 
+    {name: "Pricing", type:"link"}, 
+    {name: "FAQ", type:"link"}
 ];
 
 const NavItem = ({item}) => {
+    const [dropdown, setDropdown] = useState(false);
+    const toggleDropdownHandler = () => {
+        setDropdown((curstate) => {
+        return !curstate;
+        })
+    }
     return (
+
         <li className="relative group">
             {item.type === "link" ? (
             <>
@@ -29,13 +31,13 @@ const NavItem = ({item}) => {
                     /
                 </span> 
             </> ) : (
-            <>
-                <a href="/" className="px-4 py-2 flex gap-x-1 items-center">
+            <div className="flex flex-col items-center">
+                <button className="px-4 py-2 flex gap-x-1 items-center" onClick={toggleDropdownHandler}>
                     <span>{item.name}</span>                      
                     <MdKeyboardArrowDown/>
-                </a>
-                <div className="hidden transition-all duration-500 pt-4 absolute bottom-0 right-0 transform translate-y-full group-hover:block w-max">
-                    <ul className="flex flex-col shadow-lg rounded-lg overflow-hidden">
+                </button>
+                <div className={`${dropdown ? "block" : "hidden"} lg:hidden transition-all duration-500 pt-4 lg:absolute lg:bottom-0 lg:right-0 lg:transform lg:translate-y-full lg:group-hover:block w-max`}>
+                    <ul className="bg-dark-soft lg:bg-transparent flex flex-col shadow-lg rounded-lg overflow-hidden">
                         {item.items.map((page) => (
                             <a href="/" className="hover:bg-dark-hard hover:text-white px-4 py-2 text-white lg:text-dark-hard">
                             {page}
@@ -44,7 +46,7 @@ const NavItem = ({item}) => {
                         ))}
                     </ul>
                 </div>
-            </>
+            </div>
             )}
         </li>
     );
@@ -58,7 +60,7 @@ const Header = () => {
         });
     }
     return (
-        <section>
+        <section className="sticky top-0 left-0 right-0 z-50">
             <header
                 className="container mx-auto px-5 flex justify-between py-4 items-center">
                 <div>
