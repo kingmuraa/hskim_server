@@ -2,11 +2,11 @@ import React from "react";
 
 const Footer = () => {
     return (
-    <>
+    <section className="bg-dark-hard h-96">
         <div className="container mx-auto px-5 flex justify-between py-4 items-center">
-            Footer
+            <p className="text-[#959EAD] font-semibold">Footer</p>
         </div>      
-    </>
+    </section>
 )};
 
 export default Footer;
