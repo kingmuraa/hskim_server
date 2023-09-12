@@ -1,13 +1,10 @@
 #! bin/sh
 
-pull=`git pull`
+# pull=`git pull`
+kill=`pm2 start "npm run start" --watch`
+start=`pm2 start "npm run start" --watch`
 
-pm2=`pm2 start "npm run start" --watch`
-
-cmd=`ls`
-
-echo "${pull}"
-
-sleep 5
-
-echo "${pm2}"
+# echo "${pull}"
+echo "${kill}"
+sleep 2
+echo "${start}"
