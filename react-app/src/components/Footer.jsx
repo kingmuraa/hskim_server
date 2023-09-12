@@ -4,7 +4,7 @@ const Footer = () => {
     return (
     <section className="bg-dark-hard h-96 mt-5">
         <div className="container mx-auto px-5 flex justify-between py-4 items-center">
-            <p className="text-[#959EAD] font-semibold"> NONE 드간다~ </p>
+            <p className="text-[#959EAD] font-semibold"> 과연 나는 조져질까요 </p>
         </div>      
     </section>
 )};
